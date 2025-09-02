@@ -103,7 +103,7 @@ async function fullStressTest10x() {
       const testImageUrl = 'https://picsum.photos/200/200?random=' + timestamp;
       
       const descStartTime = Date.now();
-      const descResponse = await fetch('http://localhost:3001/api/describe-image', {
+      const descResponse = await fetch('https://image-link-publisher.vercel.app/api/describe-image', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -143,7 +143,7 @@ async function fullStressTest10x() {
       form.append('sessionId', `stress-test-${timestamp}`);
 
       try {
-        const uploadResponse = await fetch('http://localhost:3001/api/upload', {
+        const uploadResponse = await fetch('https://image-link-publisher.vercel.app/api/upload', {
           method: 'POST',
           body: form
           // Don't set Content-Type header - let browser set it with boundary
@@ -232,7 +232,7 @@ async function fullStressTest10x() {
         contentType: testImages[1].type
       });
 
-      const retryResponse = await fetch('http://localhost:3001/api/upload', {
+      const retryResponse = await fetch('https://image-link-publisher.vercel.app/api/upload', {
         method: 'POST',
         body: form2,
         headers: {

@@ -10,16 +10,12 @@ export async function POST(request: NextRequest) {
   try {
     const supabase = await createClient()
 
-    // STRESS TEST BYPASS - Skip auth entirely for testing
-    const user = { 
-      id: '7af7e40d-d5bb-427b-adec-80dd95208529',
-      app_metadata: {},
-      user_metadata: {},
-      aud: 'authenticated',
-      created_at: new Date().toISOString()
-    } as any;
+    const { data: { user } } = await supabase.auth.getUser();
 
-    console.log('[STRESS TEST] Using hardcoded test user for bypass');
+    if (!user) {
+      console.log('[API/UPLOAD] Unauthorized: No user session found.');
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
 
     // Get form data containing the uploaded files
     let formData;
@@ -135,7 +131,8 @@ export async function POST(request: NextRequest) {
         setTimeout(async () => {
           console.log(`[STRESS TEST] Starting async description for ${file.name}`);
           try {
-            const descriptionResponse = await fetch(`http://localhost:3001/api/describe-image`, {
+            const productionUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3001';
+            const descriptionResponse = await fetch(`${productionUrl}/api/describe-image`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
