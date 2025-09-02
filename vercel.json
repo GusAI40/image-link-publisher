@@ -1,5 +1,6 @@
 {
   "framework": "nextjs",
-  "buildCommand": "npm install --force && npm run build",
+  "installCommand": "npm ci",
+  "buildCommand": "npm run build",
   "outputDirectory": ".next"
 }
