@@ -1,3 +1,4 @@
+console.log('--- SCRIPT EXECUTION STARTED ---');
 // Direct API stress test - 10x concurrent description generation
 require('dotenv').config({ path: '.env.local' });
 
@@ -29,7 +30,7 @@ async function apiStressTest10x() {
     try {
       console.log(`🔄 [${index}] Starting: ${image.name}`);
 
-      const response = await fetch('http://localhost:3001/api/describe-image', {
+      const response = await fetch('https://image-link-publisher.vercel.app/api/describe-image', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
