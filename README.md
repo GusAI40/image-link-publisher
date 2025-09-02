@@ -1,21 +1,90 @@
-# 🖼️ Image Link Publisher
+# 🖼️ Image Link Publisher 🚀
 
-**Turn your images into shareable links in seconds!**
+A powerful Next.js application for uploading images and generating AI-powered descriptions with permanent public URLs.
 
-A simple, powerful tool that uploads your images and creates permanent links you can use anywhere on the web. Perfect for sharing images on websites, social media, or anywhere you need a reliable image URL.
+**🌐 Live Application:** https://image-link-publisher.vercel.app  
+**📁 GitHub Repository:** https://github.com/GusAI40/image-link-publisher
 
----
+## ✨ Features
 
-## ✨ What Does This App Do?
+- **Multi-file Upload**: Upload up to 10 images simultaneously (10MB each)
+- **AI Descriptions**: Powered by Google Gemini 2.0 Flash Experimental (FREE tier)
+- **Permanent URLs**: Secure public URLs via Supabase Storage
+- **Multiple Formats**: Generate Markdown, HTML, and direct links
+- **User Authentication**: Secure login with Supabase Auth
+- **Analytics Dashboard**: Track uploads, performance, and usage
+- **Subscription Billing**: Stripe integration with multiple tiers
+- **Three Interfaces**: Simple, Premium, and Dashboard variants
 
-This app helps you:
-- **Upload up to 10 images at once** - Just drag and drop!
-- **Get permanent links** - Your images stay online forever
-- **Generate descriptions** - AI creates helpful descriptions for each image
-- **Copy markdown code** - Ready-to-use code for websites and documents
-- **Share anywhere** - Links work on any website or platform
+## 🛠 Tech Stack
 
----
+- **Frontend**: Next.js 14, React 18, TypeScript, Tailwind CSS
+- **Backend**: Supabase (Auth, Database, Storage)
+- **AI**: Google Gemini 2.0 Flash Experimental
+- **Billing**: Stripe
+- **Deployment**: Vercel
+- **Validation**: Zod schemas (Windsurf Rules v10x+ compliant)
+
+## 🚀 Quick Start
+
+1. Clone the repository
+```bash
+git clone https://github.com/GusAI40/image-link-publisher.git
+cd image-link-publisher
+```
+
+2. Install dependencies
+```bash
+npm install
+```
+
+3. Set up environment variables (copy `.env.local` and configure)
+```bash
+cp .env.local .env.local.example
+```
+
+4. Run development server
+```bash
+npm run dev
+```
+
+5. Open [http://localhost:3001](http://localhost:3001)
+
+## 🔧 Environment Variables
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+GOOGLE_AI_API_KEY=your_google_ai_api_key
+STRIPE_SECRET_KEY=your_stripe_secret_key
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
+```
+
+## 📊 Subscription Tiers
+
+- **Free**: 100 images/month, basic features
+- **Starter**: $29/month, 1K images, team features
+- **Professional**: $99/month, 10K images, API access
+- **Enterprise**: $499/month, unlimited processing, white-label
+
+## 🧪 Testing
+
+Run comprehensive tests:
+```bash
+npm run test
+# or use the batch script
+./run-complete-tests.bat
+```
+
+## 🚀 Deployment
+
+The application is deployed on Vercel with automatic GitHub integration. Environment variables are configured in the Vercel dashboard.
+
+**Production URL:** https://image-link-publisher.vercel.app
+
+## 📝 License
+
+MIT License
 
 ## 🚀 Quick Start Guide
 
@@ -26,25 +95,25 @@ This app helps you:
    - Or push to GitHub and clone your repository
 
 2. **Install everything you need**
-   \`\`\`bash
+   ```bash
    npm install
-   \`\`\`
+   ```
 
 3. **Set up your database**
    - The app uses Supabase (a free database service)
    - Run these commands to create your database tables:
-   \`\`\`bash
+   ```bash
    # Create storage bucket for images
    npm run db:migrate scripts/001_create_storage_bucket.sql
    
    # Create table to track your images
    npm run db:migrate scripts/002_create_images_table.sql
-   \`\`\`
+   ```
 
 4. **Start the app**
-   \`\`\`bash
+   ```bash
    npm run dev
-   \`\`\`
+   ```
    
    Open your browser and go to `http://localhost:3000`
 
